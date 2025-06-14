@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('order_number')->unique();
             $table->unsignedBigInteger('user_id');
             $table->decimal('total_amount', 10, 2)->default(0);
-            $table->timestamps();
-
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
